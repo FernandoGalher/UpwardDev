@@ -120,4 +120,33 @@
 			speed: 1000
 		});
 
+	// Rotating footer quote.
+		var purposeQuotes = [
+			'"If you fail to plan, you are planning to fail." | Probably Benjamin Franklin',
+			'"Chance favors the prepared mind." | Louis Pasteur',
+			'"Victorious warriors win first and then go to war, while defeated warriors go to war first and then seek to win." | Sun Tzu',
+			'"Well begun is half done." | Probably Aristotle',
+			'"By failing to prepare, you are preparing to fail." | Probably Benjamin Franklin'
+		];
+
+		var $purposeQuote = $('.js-purpose-quote');
+
+		if ($purposeQuote.length > 0 && purposeQuotes.length > 0) {
+
+			var storageKey = 'upwarddev-purpose-quote-index';
+			var previousIndex = window.localStorage ? parseInt(window.localStorage.getItem(storageKey), 10) : -1;
+			var nextIndex = Math.floor(Math.random() * purposeQuotes.length);
+
+			if (purposeQuotes.length > 1) {
+				while (nextIndex === previousIndex)
+					nextIndex = Math.floor(Math.random() * purposeQuotes.length);
+			}
+
+			$purposeQuote.text(purposeQuotes[nextIndex]);
+
+			if (window.localStorage)
+				window.localStorage.setItem(storageKey, nextIndex);
+
+		}
+
 })(jQuery);
