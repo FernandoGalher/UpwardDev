@@ -100,10 +100,10 @@ input, select, textarea {
 
 	body {
 		background-color: #1A1F36;
-		background-image: url("images/overlay.png"), -moz-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
-		background-image: url("images/overlay.png"), -webkit-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
-		background-image: url("images/overlay.png"), -ms-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
-		background-image: url("images/overlay.png"), linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
+		background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/overlay.png"), -moz-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
+		background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/overlay.png"), -webkit-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
+		background-image: -ms-linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/overlay.png"), -ms-linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
+		background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/overlay.png"), linear-gradient(180deg, #1A1F36 0%, #313a61 100%);
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -125,9 +125,9 @@ input, select, textarea {
 	}
 
 	body, input, select, textarea {
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: "Montserrat", Helvetica, sans-serif;
 		font-size: 17pt;
-		font-weight: 300;
+		font-weight: 400;
 		line-height: 1.65;
 	}
 
@@ -170,7 +170,7 @@ input, select, textarea {
 		}
 
 	strong, b {
-		font-weight: 400;
+		font-weight: 700;
 	}
 
 	em, i {
@@ -194,7 +194,7 @@ input, select, textarea {
 		}
 
 	h1, h2, h3, h4, h5, h6 {
-		font-weight: 300;
+		font-weight: 700;
 		line-height: 1.5;
 		margin: 0 0 0.7em 0;
 		letter-spacing: -0.025em;
@@ -3115,7 +3115,7 @@ input, select, textarea {
 				-ms-transition-delay: 0s;
 				transition-delay: 0s;
 				display: block;
-				margin: 0 0 1.5em 0;
+				margin: 0 0 0.25em 0;
 			}
 
 				#header.alt .logo img {
@@ -3374,6 +3374,21 @@ input, select, textarea {
 			z-index: 0;
 		}
 
+		#main p,
+		#main ul,
+		#main ol,
+		#main li,
+		#main dl,
+		#main dt,
+		#main dd,
+		#main label,
+		#main blockquote,
+		#main a,
+		#main strong,
+		#main b {
+			color: rgba(255, 255, 255, 0.92);
+		}
+
 		#main input, #main select, #main textarea {
 			color: #636363;
 		}
@@ -3383,11 +3398,11 @@ input, select, textarea {
 		}
 
 		#main strong, #main b {
-			color: #636363;
+			color: rgba(255, 255, 255, 0.92);
 		}
 
 		#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
-			color: #636363;
+			color: rgba(255, 255, 255, 0.92);
 		}
 
 		#main blockquote {
@@ -3414,7 +3429,7 @@ input, select, textarea {
 		#main .button {
 			background-color: transparent;
 			box-shadow: inset 0 0 0 1px #dddddd;
-			color: #636363 !important;
+			color: rgba(255, 255, 255, 0.92) !important;
 		}
 
 			#main input[type="submit"]:hover,
@@ -3476,7 +3491,7 @@ input, select, textarea {
 				}
 
 		#main label {
-			color: #636363;
+			color: rgba(255, 255, 255, 0.92);
 		}
 
 		#main input[type="text"],
@@ -3508,7 +3523,7 @@ input, select, textarea {
 
 		#main input[type="checkbox"] + label,
 		#main input[type="radio"] + label {
-			color: #636363;
+			color: rgba(255, 255, 255, 0.92);
 		}
 
 			#main input[type="checkbox"] + label:before,
@@ -3576,7 +3591,7 @@ input, select, textarea {
 		}
 
 		#main dl dt {
-			color: #636363;
+			color: rgba(255, 255, 255, 0.92);
 		}
 
 		#main header.major h2:after {
