@@ -36,6 +36,9 @@
 				display: block;
 				border-radius: 100%;
 				width: 16em;
+				height: 16em;
+				@include vendor('object-fit', 'cover');
+				@include vendor('object-position', '60% center');
 			}
 		}
 

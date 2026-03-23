@@ -2291,23 +2291,23 @@ input, select, textarea {
 			}
 
 		.icon.style1 {
-			color: #efa8b0;
+			color: #1C2B8F;
 		}
 
 		.icon.style2 {
-			color: #c79cc8;
+			color: #1C2B8F;
 		}
 
 		.icon.style3 {
-			color: #a89cc8;
+			color: #1C2B8F;
 		}
 
 		.icon.style4 {
-			color: #9bb2e1;
+			color: #1C2B8F;
 		}
 
 		.icon.style5 {
-			color: #8cc9f0;
+			color: #1C2B8F;
 		}
 
 		@media screen and (max-width: 1680px) {
@@ -2702,7 +2702,7 @@ input, select, textarea {
 	}
 
 	header.major h2:after {
-		background-color: rgba(255, 255, 255, 0.35);
+		background-color: #1C2B8F;
 	}
 
 /* Table */
@@ -2826,6 +2826,29 @@ input, select, textarea {
 
 			.features li > :last-child {
 				margin-bottom: 0;
+			}
+
+		.features .image-icon {
+			display: -moz-inline-flex;
+			display: -webkit-inline-flex;
+			display: -ms-inline-flex;
+			display: inline-flex;
+			-moz-align-items: center;
+			-webkit-align-items: center;
+			-ms-align-items: center;
+			align-items: center;
+			-moz-justify-content: center;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+		}
+
+			.features .image-icon img {
+				display: block;
+				width: 1.89em;
+				height: 1.89em;
+				object-fit: contain;
+				filter: brightness(0) saturate(100%) invert(20%) sepia(95%) saturate(2412%) hue-rotate(229deg) brightness(91%) contrast(96%);
 			}
 
 		@media screen and (max-width: 980px) {
@@ -3009,7 +3032,12 @@ input, select, textarea {
 				display: block;
 				border-radius: 100%;
 				width: 16em;
-			}
+				height: 16em;
+				-o-object-fit: cover;
+				object-fit: cover;
+				-o-object-position: 60% center;
+				object-position: 60% center;
+				}
 
 		@media screen and (max-width: 980px) {
 
@@ -3297,7 +3325,8 @@ input, select, textarea {
 					}
 
 					#nav ul li a.active {
-						background-color: #ffffff;
+						background-color: #1C2B8F;
+						color: #ffffff;
 						box-shadow: none;
 					}
 
@@ -3595,11 +3624,8 @@ input, select, textarea {
 		}
 
 		#main header.major h2:after {
-			background-color: #dddddd;
-			background-image: -moz-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-			background-image: -webkit-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-			background-image: -ms-linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
-			background-image: linear-gradient(90deg, #efa8b0, #a89cc8, #8cc9f0);
+			background-color: #1C2B8F;
+			background-image: none;
 		}
 
 		#main table tbody tr {

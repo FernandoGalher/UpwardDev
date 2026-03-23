@@ -32,6 +32,20 @@
 			}
 		}
 
+		.image-icon {
+			display: inline-flex;
+			@include vendor('align-items', 'center');
+			@include vendor('justify-content', 'center');
+
+			img {
+				display: block;
+				width: 1.89em;
+				height: 1.89em;
+				object-fit: contain;
+				filter: brightness(0) saturate(100%) invert(20%) sepia(95%) saturate(2412%) hue-rotate(229deg) brightness(91%) contrast(96%);
+			}
+		}
+
 		@include breakpoint('<=medium') {
 			li {
 				width: calc(#{(100% / 2)} - #{_size(element-margin)});
