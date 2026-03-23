@@ -14,9 +14,50 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 		<link rel="icon" type="image/svg+xml" href="images/UpwardDev SVG.svg" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.services-overview .features > li {
+				text-align: left;
+			}
+
+			.services-overview .features > li > h3,
+			.services-overview .features > li > p,
+			.services-overview .features > li > .icon {
+				text-align: center;
+			}
+
+			.service-details {
+				margin-top: 2rem;
+				display: grid;
+				gap: 1.25rem;
+			}
+
+			.service-item {
+				padding-top: 1.25rem;
+				border-top: solid 1px rgba(255, 255, 255, 0.16);
+			}
+
+			.service-item h4 {
+				margin: 0 0 0.5rem 0;
+				font-size: 1rem;
+			}
+
+			.service-item p {
+				margin: 0 0 0.6rem 0;
+				font-size: 0.95rem;
+				line-height: 1.7;
+			}
+
+			.service-item p:last-child {
+				margin-bottom: 0;
+			}
+
+			.service-use {
+				opacity: 0.88;
+			}
+		</style>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<body class="is-preload subpage">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -28,17 +69,132 @@
 						<p>El crecimiento se construye con propósito</p>
 					</header>
 
+					<a href="index.html" class="subpage-nav-logo" aria-label="Volver al inicio">
+						<img src="images/UpwardDev SVG.svg" alt="UpwardDev" />
+					</a>
+
 				<!-- Main -->
 					<div id="main">
 
 						<!-- Content -->
-							<section id="content" class="main">
-								<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
-								<h2>Ver servicios</h2>
-								<p>UpwardDev ofrece apoyo construido en torno a las necesidades reales de los negocios en crecimiento. Los servicios están diseñados para mejorar la estructura, fortalecer la presencia digital y hacer que las operaciones diarias sean más fáciles de gestionar. El apoyo puede enfocarse en un área o abarcar varias partes del negocio, según lo que genere más valor.</p>
-								<p>Las áreas principales de servicio incluyen apoyo empresarial, desarrollo web, desarrollo de aplicaciones, organización de procesos y optimización digital. Cada servicio se aborda con un enfoque práctico, ayudando a los negocios a crear sistemas más sólidos, reducir la confusión y avanzar con mayor consistencia.</p>
-								<h2>Cómo se aplican los servicios</h2>
-								<p>En lugar de imponer un paquete fijo, UpwardDev adapta el apoyo a la etapa y prioridades del negocio. Algunos clientes necesitan ayuda para mejorar la organización interna, mientras que otros necesitan un sitio web más sólido, mejores herramientas digitales o más estructura entre responsabilidades y flujos de trabajo. El trabajo se mantiene enfocado en lo que es útil, manejable y alineado con el crecimiento a largo plazo.</p>
+							<section id="content" class="main special services-overview">
+								<header class="major">
+									<h2>Servicios</h2>
+									<p>Soluciones organizadas en tres áreas clave para ayudarte a mejorar tu operación, comunicar mejor tu valor y fortalecer la parte digital de tu negocio.</p>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="icon major image-icon"><img src="images/jigsaw.png" alt="Pieza de rompecabezas" /></span>
+										<h3>Apoyo empresarial</h3>
+										<p>Servicios orientados a mejorar cómo funciona el negocio por dentro.</p>
+										<div class="service-details">
+											<article class="service-item">
+												<h4>1. Análisis del negocio</h4>
+												<p>Revisión de la situación actual del negocio para detectar necesidades, problemas y oportunidades de mejora.</p>
+												<p class="service-use">Útil para entender qué está fallando, qué puede optimizarse y qué dirección conviene tomar.</p>
+											</article>
+											<article class="service-item">
+												<h4>2. Organización operativa</h4>
+												<p>Orden de tareas, funciones, prioridades y responsabilidades dentro del negocio.</p>
+												<p class="service-use">Útil para reducir desorden, mejorar coordinación y trabajar con más claridad.</p>
+											</article>
+											<article class="service-item">
+												<h4>3. Mejora de procesos</h4>
+												<p>Evaluación y ajuste de flujos de trabajo para hacer las operaciones más consistentes y eficientes.</p>
+												<p class="service-use">Útil para ahorrar tiempo, evitar errores y lograr una operación más fluida.</p>
+											</article>
+											<article class="service-item">
+												<h4>4. Apoyo administrativo</h4>
+												<p>Asistencia en tareas de seguimiento, coordinación, documentación y control interno.</p>
+												<p class="service-use">Útil para negocios que necesitan apoyo constante en su día a día.</p>
+											</article>
+											<article class="service-item">
+												<h4>5. Estructuración de proyectos</h4>
+												<p>Organización de proyectos, etapas, tareas y prioridades antes de empezar a ejecutarlos.</p>
+												<p class="service-use">Útil para lanzar ideas o servicios con más orden y menos improvisación.</p>
+											</article>
+											<article class="service-item">
+												<h4>6. Apoyo en gestión</h4>
+												<p>Acompañamiento a dueños, encargados o administradores en la supervisión del trabajo y la toma de decisiones operativas.</p>
+												<p class="service-use">Útil para negocios que necesitan más control, seguimiento y dirección.</p>
+											</article>
+										</div>
+									</li>
+									<li>
+										<span class="icon major image-icon"><img src="images/megaphone.png" alt="Megafono" /></span>
+										<h3>Marketing</h3>
+										<p>Servicios orientados a visibilidad, comunicación y atracción de clientes.</p>
+										<div class="service-details">
+											<article class="service-item">
+												<h4>1. Estrategia de marketing</h4>
+												<p>Definición del enfoque de promoción según el negocio, su público y sus objetivos.</p>
+												<p class="service-use">Útil para saber cómo presentarse, a quién dirigirse y qué comunicar.</p>
+											</article>
+											<article class="service-item">
+												<h4>2. Posicionamiento de marca</h4>
+												<p>Trabajo en la forma en que el negocio se percibe frente al cliente.</p>
+												<p class="service-use">Útil para proyectar una imagen más clara, profesional y confiable.</p>
+											</article>
+											<article class="service-item">
+												<h4>3. Mejora de presentación comercial</h4>
+												<p>Ajuste de mensajes, textos y forma de presentar productos o servicios.</p>
+												<p class="service-use">Útil para comunicar mejor el valor del negocio y causar una mejor impresión.</p>
+											</article>
+											<article class="service-item">
+												<h4>4. Orientación para contenido</h4>
+												<p>Definición de ideas, líneas de comunicación y contenido base para redes o medios digitales.</p>
+												<p class="service-use">Útil para mantener consistencia y presencia activa.</p>
+											</article>
+											<article class="service-item">
+												<h4>5. Apoyo en visibilidad digital</h4>
+												<p>Acciones orientadas a que el negocio tenga más presencia y mayor claridad frente a clientes potenciales.</p>
+												<p class="service-use">Útil para negocios que existen, pero aún no se muestran bien al mercado.</p>
+											</article>
+										</div>
+									</li>
+									<li>
+										<span class="icon major image-icon"><img src="images/globe.png" alt="Globo" /></span>
+										<h3>Presencia digital</h3>
+										<p>Servicios orientados a construir y mejorar la parte digital del negocio.</p>
+										<div class="service-details">
+											<article class="service-item">
+												<h4>1. Desarrollo web</h4>
+												<p>Creación de sitios web claros, funcionales y profesionales según la necesidad del negocio.</p>
+												<p class="service-use">Útil para tener presencia online, mostrar servicios y generar confianza.</p>
+											</article>
+											<article class="service-item">
+												<h4>2. Gestión de redes sociales</h4>
+												<p>Organización y administración básica o continua de perfiles sociales del negocio.</p>
+												<p class="service-use">Útil para mantener actividad, orden y mejor comunicación con la audiencia.</p>
+											</article>
+											<article class="service-item">
+												<h4>3. Configuración de redes sociales</h4>
+												<p>Creación, ajuste y optimización de perfiles en plataformas sociales.</p>
+												<p class="service-use">Útil para negocios que aún no tienen una presencia digital bien configurada.</p>
+											</article>
+											<article class="service-item">
+												<h4>4. Implementación de herramientas digitales</h4>
+												<p>Configuración de plataformas, sistemas o recursos digitales que apoyen la operación del negocio.</p>
+												<p class="service-use">Útil para trabajar con más orden, conexión y eficiencia.</p>
+											</article>
+											<article class="service-item">
+												<h4>5. Optimización digital</h4>
+												<p>Mejora de canales, herramientas o estructuras digitales ya existentes.</p>
+												<p class="service-use">Útil para negocios que ya tienen presencia digital, pero necesitan fortalecerla.</p>
+											</article>
+											<article class="service-item">
+												<h4>6. Desarrollo de aplicaciones</h4>
+												<p>Creación de soluciones digitales más específicas según una necesidad concreta del negocio.</p>
+												<p class="service-use">Útil cuando una página web no es suficiente y se necesita una herramienta más funcional o personalizada.</p>
+											</article>
+										</div>
+									</li>
+								</ul>
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="book-a-consultation.html" class="button primary">Agenda una cita</a></li>
+									</ul>
+								</footer>
 							</section>
 
 					</div>
