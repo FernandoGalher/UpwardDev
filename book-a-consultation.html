@@ -14,6 +14,194 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 		<link rel="icon" type="image/svg+xml" href="images/UpwardDev SVG.svg" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.booking-shell {
+				display: grid;
+				grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 1fr);
+				gap: 2.5rem;
+				align-items: start;
+			}
+
+			.booking-panel,
+			.booking-summary {
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 18px;
+				padding: 2rem;
+				box-shadow: 0 18px 50px rgba(15, 20, 45, 0.16);
+			}
+
+			.booking-panel h2,
+			.booking-summary h3 {
+				margin-bottom: 0.75rem;
+			}
+
+			.booking-panel p.lead {
+				margin-bottom: 2rem;
+			}
+
+			.booking-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.2rem;
+			}
+
+			.booking-field.full {
+				grid-column: 1 / -1;
+			}
+
+			.booking-field label {
+				display: block;
+				font-size: 0.95rem;
+				font-weight: 700;
+				margin-bottom: 0.55rem;
+				color: rgba(255, 255, 255, 0.92);
+			}
+
+			.booking-field input,
+			.booking-field select,
+			.booking-field textarea {
+				width: 100%;
+			}
+
+			.booking-field textarea {
+				min-height: 9rem;
+				resize: vertical;
+			}
+
+			.booking-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.85rem 1.5rem;
+				margin: 1.5rem 0 0 0;
+				padding: 0;
+				list-style: none;
+				color: rgba(255, 255, 255, 0.72);
+				font-size: 0.95rem;
+			}
+
+			.booking-summary p {
+				margin-bottom: 1.25rem;
+			}
+
+			.booking-list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				display: grid;
+				gap: 0.9rem;
+			}
+
+			.booking-list li {
+				padding: 1rem 1.1rem;
+				border-radius: 14px;
+				background: rgba(28, 43, 143, 0.22);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+			}
+
+			.booking-list strong {
+				display: block;
+				font-size: 1rem;
+				margin-bottom: 0.2rem;
+				color: #ffffff;
+			}
+
+			.booking-list span {
+				display: block;
+				font-size: 0.92rem;
+				color: rgba(255, 255, 255, 0.76);
+			}
+
+			.booking-empty {
+				padding: 1rem 1.1rem;
+				border-radius: 14px;
+				background: rgba(255, 255, 255, 0.04);
+				color: rgba(255, 255, 255, 0.72);
+			}
+
+			.booking-note {
+				margin-top: 1.25rem;
+				padding: 1rem 1.1rem;
+				border-left: 3px solid rgba(255, 255, 255, 0.4);
+				background: rgba(255, 255, 255, 0.04);
+				color: rgba(255, 255, 255, 0.78);
+				font-size: 0.92rem;
+			}
+
+			.booking-status {
+				margin-top: 1rem;
+				font-size: 0.92rem;
+				color: #ffd6d6;
+				min-height: 1.2rem;
+			}
+
+			.booking-modal {
+				position: fixed;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 1.5rem;
+				background: rgba(8, 12, 28, 0.72);
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.2s ease, visibility 0.2s ease;
+				z-index: 10000;
+			}
+
+			.booking-modal.is-visible {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			.booking-modal-card {
+				width: min(32rem, 100%);
+				padding: 2.5rem 2rem;
+				text-align: center;
+				border-radius: 22px;
+				background: #1b2452;
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+			}
+
+			.booking-check {
+				width: 5.5rem;
+				height: 5.5rem;
+				margin: 0 auto 1.25rem auto;
+				border-radius: 999px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: rgba(255, 255, 255, 0.08);
+				border: 2px solid rgba(255, 255, 255, 0.18);
+			}
+
+			.booking-check .icon {
+				font-size: 2.2rem;
+				color: #ffffff;
+			}
+
+			.booking-modal-card p:last-of-type {
+				margin-bottom: 1.5rem;
+			}
+
+			@media screen and (max-width: 980px) {
+				.booking-shell {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media screen and (max-width: 736px) {
+				.booking-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.booking-panel,
+				.booking-summary {
+					padding: 1.5rem;
+				}
+			}
+		</style>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -33,12 +221,60 @@
 
 						<!-- Content -->
 							<section id="content" class="main">
-								<span class="image main"><img src="images/pic04.jpg" alt="" /></span>
-								<h2>Reservar una consulta</h2>
-								<p>Una consulta es una forma sencilla de conversar sobre lo que tu negocio necesita, dónde están apareciendo los desafíos actuales y qué tipo de apoyo sería más útil. Crea un espacio para analizar la estructura, la presencia digital, la organización interna o los problemas operativos con mayor claridad y dirección.</p>
-								<p>Durante la conversación, UpwardDev puede ayudar a identificar prioridades, destacar oportunidades prácticas de mejora y sugerir próximos pasos realistas. El enfoque está en entender tu negocio tal como está ahora y definir un apoyo que se ajuste a tus metas, capacidad y etapa de crecimiento.</p>
-								<h2>Antes de ponernos en contacto</h2>
-								<p>Conviene venir preparado con un breve resumen de tu negocio, las áreas que se sienten desorganizadas o limitadas y lo que quieres mejorar. Eso hace que la consulta sea más útil desde el inicio y permite que la conversación se mantenga enfocada en acciones que realmente pueden marcar una diferencia.</p>
+								<div class="booking-shell">
+									<div class="booking-panel">
+										<h2>Reserva una cita</h2>
+										<p class="lead">Selecciona una fecha y horario para agendar tu consulta con UpwardDev. Una vez registrada, la cita se agregará al calendario visible de esta interfaz y no tendrá opción de edición desde la página.</p>
+										<form id="booking-form">
+											<div class="booking-grid">
+												<div class="booking-field">
+													<label for="booking-name">Nombre</label>
+													<input type="text" id="booking-name" name="name" required />
+												</div>
+												<div class="booking-field">
+													<label for="booking-email">Correo electrónico</label>
+													<input type="email" id="booking-email" name="email" required />
+												</div>
+												<div class="booking-field">
+													<label for="booking-date">Fecha</label>
+													<input type="date" id="booking-date" name="date" required />
+												</div>
+												<div class="booking-field">
+													<label for="booking-time">Horario</label>
+													<select id="booking-time" name="time" required>
+														<option value="">Selecciona un horario</option>
+														<option value="09:00">09:00 AM</option>
+														<option value="10:00">10:00 AM</option>
+														<option value="11:00">11:00 AM</option>
+														<option value="14:00">02:00 PM</option>
+														<option value="15:00">03:00 PM</option>
+														<option value="16:00">04:00 PM</option>
+													</select>
+												</div>
+												<div class="booking-field full">
+													<label for="booking-notes">Notas</label>
+													<textarea id="booking-notes" name="notes" placeholder="Cuéntanos brevemente qué necesitas revisar en la consulta."></textarea>
+												</div>
+											</div>
+											<ul class="booking-meta">
+												<li>Duración sugerida: 45 minutos</li>
+												<li>Zona horaria: Nicaragua</li>
+											</ul>
+											<div class="booking-status" id="booking-status" aria-live="polite"></div>
+											<ul class="actions" style="margin-top: 1.5rem;">
+												<li><button type="submit" class="button primary">Confirmar cita</button></li>
+											</ul>
+										</form>
+									</div>
+									<aside class="booking-summary">
+										<h3>Fechas reservadas</h3>
+										<p>Las citas registradas aquí se muestran en modo lectura para evitar cambios desde la página.</p>
+										<ul class="booking-list" id="booking-list"></ul>
+										<div class="booking-note">
+											Esta versión guarda la agenda en el navegador local. Para correo automático real y disponibilidad compartida para todos los visitantes, hace falta conectar esta página a un backend y una base de datos.
+										</div>
+									</aside>
+								</div>
 							</section>
 
 					</div>
@@ -74,6 +310,19 @@
 
 			</div>
 
+			<div class="booking-modal" id="booking-modal" aria-hidden="true">
+				<div class="booking-modal-card" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+					<div class="booking-check">
+						<span class="icon solid fa-check"></span>
+					</div>
+					<h3 id="booking-modal-title">You are all set</h3>
+					<p>Please check your email for confirmation for the appt.</p>
+					<ul class="actions special">
+						<li><button type="button" class="button" id="booking-modal-close">Cerrar</button></li>
+					</ul>
+				</div>
+			</div>
+
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
@@ -81,6 +330,121 @@
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
+			<script>
+				(function () {
+					var form = document.getElementById('booking-form');
+					var dateInput = document.getElementById('booking-date');
+					var status = document.getElementById('booking-status');
+					var list = document.getElementById('booking-list');
+					var modal = document.getElementById('booking-modal');
+					var modalClose = document.getElementById('booking-modal-close');
+					var storageKey = 'upwarddev-bookings';
+
+					if (!form || !dateInput || !status || !list || !modal || !modalClose) return;
+
+					var today = new Date();
+					var isoToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+					dateInput.min = isoToday;
+
+					function getBookings() {
+						try {
+							return JSON.parse(localStorage.getItem(storageKey) || '[]');
+						} catch (error) {
+							return [];
+						}
+					}
+
+					function saveBookings(bookings) {
+						localStorage.setItem(storageKey, JSON.stringify(bookings));
+					}
+
+					function formatDate(dateValue) {
+						var parts = dateValue.split('-');
+						if (parts.length !== 3) return dateValue;
+						var localDate = new Date(parts[0], parts[1] - 1, parts[2]);
+						return localDate.toLocaleDateString('es-NI', {
+							weekday: 'long',
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						});
+					}
+
+					function renderBookings() {
+						var bookings = getBookings().sort(function (a, b) {
+							var left = a.date + 'T' + a.time;
+							var right = b.date + 'T' + b.time;
+							return left.localeCompare(right);
+						});
+
+						if (!bookings.length) {
+							list.innerHTML = '<li class="booking-empty">Aún no hay citas guardadas en este navegador.</li>';
+							return;
+						}
+
+						list.innerHTML = bookings.map(function (booking) {
+							return '<li><strong>' + formatDate(booking.date) + '</strong><span>' + booking.time + ' | ' + booking.name + '</span><span>' + booking.email + '</span></li>';
+						}).join('');
+					}
+
+					function showStatus(message) {
+						status.textContent = message || '';
+					}
+
+					function showModal() {
+						modal.classList.add('is-visible');
+						modal.setAttribute('aria-hidden', 'false');
+					}
+
+					function hideModal() {
+						modal.classList.remove('is-visible');
+						modal.setAttribute('aria-hidden', 'true');
+					}
+
+					modalClose.addEventListener('click', hideModal);
+					modal.addEventListener('click', function (event) {
+						if (event.target === modal) hideModal();
+					});
+
+					form.addEventListener('submit', function (event) {
+						event.preventDefault();
+						showStatus('');
+
+						var formData = new FormData(form);
+						var booking = {
+							name: String(formData.get('name') || '').trim(),
+							email: String(formData.get('email') || '').trim(),
+							date: String(formData.get('date') || '').trim(),
+							time: String(formData.get('time') || '').trim(),
+							notes: String(formData.get('notes') || '').trim()
+						};
+
+						if (!booking.name || !booking.email || !booking.date || !booking.time) {
+							showStatus('Completa todos los campos obligatorios antes de continuar.');
+							return;
+						}
+
+						var bookings = getBookings();
+						var duplicate = bookings.some(function (item) {
+							return item.date === booking.date && item.time === booking.time;
+						});
+
+						if (duplicate) {
+							showStatus('Ese horario ya aparece reservado en esta agenda. Elige otro espacio.');
+							return;
+						}
+
+						bookings.push(booking);
+						saveBookings(bookings);
+						renderBookings();
+						form.reset();
+						dateInput.min = isoToday;
+						showModal();
+					});
+
+					renderBookings();
+				})();
+			</script>
 			<script src="assets/js/main.js"></script>
 
 	</body>
