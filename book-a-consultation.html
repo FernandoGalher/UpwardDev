@@ -15,15 +15,18 @@
 		<link rel="icon" type="image/svg+xml" href="images/UpwardDev SVG.svg" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-			.booking-shell {
-				display: grid;
-				grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 1fr);
-				gap: 2.5rem;
-				align-items: start;
+			:root {
+				--booking-solid-bg: #7d86a6;
+				--booking-solid-bg-dark: #5d678b;
+				--booking-border: rgba(255, 255, 255, 0.22);
+				--booking-text: #ffffff;
 			}
 
-			.booking-panel,
-			.booking-summary {
+			.booking-shell {
+				display: block;
+			}
+
+			.booking-panel {
 				background: rgba(255, 255, 255, 0.06);
 				border: 1px solid rgba(255, 255, 255, 0.12);
 				border-radius: 18px;
@@ -58,50 +61,224 @@
 				color: rgba(255, 255, 255, 0.92);
 			}
 
-			.booking-field input,
-			.booking-field select,
-			.booking-field textarea {
+			.booking-panel .booking-field input,
+			.booking-panel .booking-field select,
+			.booking-panel .booking-field textarea,
+			.booking-panel .booking-date-trigger {
 				width: 100%;
+				background: var(--booking-solid-bg) !important;
+				border: solid 1px var(--booking-border) !important;
+				box-shadow: none !important;
+				color: var(--booking-text) !important;
 			}
 
-			.booking-field input[type="date"] {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				display: block;
+			.booking-field input[type="text"],
+			.booking-field input[type="email"],
+			.booking-field select {
 				height: 3.1em;
 				min-height: 3.1em;
-				padding: 0 1em;
+				line-height: 3.1em;
+			}
+
+			.booking-date {
+				position: relative;
+			}
+
+			.booking-date-trigger {
+				width: 100%;
+				height: 3.1em;
+				min-height: 3.1em;
+				padding: 0 3.25em 0 0.9em;
 				border-radius: 0.325rem;
-				border: solid 1px rgba(255, 255, 255, 0.18);
-				background: rgba(255, 255, 255, 0.06);
-				color: #ffffff;
-				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-				color-scheme: dark;
-			}
-
-			.booking-field input[type="date"]::-webkit-datetime-edit,
-			.booking-field input[type="date"]::-webkit-datetime-edit-fields-wrapper,
-			.booking-field input[type="date"]::-webkit-datetime-edit-text,
-			.booking-field input[type="date"]::-webkit-datetime-edit-month-field,
-			.booking-field input[type="date"]::-webkit-datetime-edit-day-field,
-			.booking-field input[type="date"]::-webkit-datetime-edit-year-field {
-				color: #ffffff;
-			}
-
-			.booking-field input[type="date"]::-webkit-calendar-picker-indicator {
-				filter: invert(1) brightness(1.2);
-				opacity: 0.85;
+				border: solid 1px var(--booking-border) !important;
+				background: var(--booking-solid-bg) !important;
+				color: var(--booking-text) !important;
+				box-shadow: none;
+				display: flex;
+				align-items: center;
+				text-align: left;
+				font-size: 1em;
+				font-family: inherit;
+				position: relative;
 				cursor: pointer;
 			}
 
-			.booking-field input[type="date"]::-webkit-date-and-time-value {
-				text-align: left;
+			.booking-date-trigger::after {
+				content: '\f073';
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
+				position: absolute;
+				right: 1em;
+				top: 50%;
+				transform: translateY(-50%);
+				color: var(--booking-text);
+			}
+
+			.booking-date-trigger.is-empty {
+				color: var(--booking-text);
+			}
+
+			.booking-date-panel {
+				position: absolute;
+				top: calc(100% + 0.65rem);
+				left: 0;
+				width: min(100%, 23rem);
+				padding: 0.85rem;
+				border-radius: 0.9rem;
+				border: 1px solid var(--booking-border);
+				background: var(--booking-solid-bg-dark) !important;
+				box-shadow: 0 20px 40px rgba(9, 12, 28, 0.28);
+				display: none;
+				z-index: 20;
+			}
+
+			.booking-date-panel.is-open {
+				display: block;
+			}
+
+			.booking-date-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-bottom: 0.7rem;
+				gap: 0.6rem;
+			}
+
+			.booking-date-header button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				min-width: 0;
+				border: 0;
+				background: #4f597e;
+				color: var(--booking-text);
+				width: 1.8rem;
+				height: 1.8rem;
+				border-radius: 999px;
+				line-height: 1;
+				padding: 0;
+				box-shadow: none;
+				text-transform: none;
+				letter-spacing: 0;
+				cursor: pointer;
+			}
+
+			.booking-date-month {
+				font-size: 0.88rem;
+				font-weight: 700;
+				text-transform: capitalize;
+				color: var(--booking-text);
+			}
+
+			.booking-date-weekdays,
+			.booking-date-grid {
+				display: grid;
+				grid-template-columns: repeat(7, minmax(0, 1fr));
+				gap: 0.35rem;
+			}
+
+			.booking-date-weekdays {
+				margin-bottom: 0.35rem;
+			}
+
+			.booking-date-weekdays span {
+				text-align: center;
+				font-size: 0.66rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				color: rgba(255, 255, 255, 0.8);
+				text-transform: uppercase;
+			}
+
+			.booking-date-day {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				width: 100%;
+				min-width: 0;
+				height: 1.95rem;
+				border-radius: 0.6rem;
+				border: 0;
+				background: transparent;
+				padding: 0;
+				margin: 0;
+				box-shadow: none;
+				color: var(--booking-text);
+				font-size: 0.9rem;
+				font-family: inherit;
+				font-weight: 500;
+				line-height: 1;
+				letter-spacing: 0;
+				text-transform: none;
+				cursor: pointer;
+			}
+
+			.booking-date-day:hover,
+			.booking-date-day:focus {
+				background: #6d7799;
+				outline: none;
+			}
+
+			.booking-date-day.is-muted {
+				color: rgba(255, 255, 255, 0.28);
+				cursor: default;
+			}
+
+			.booking-date-day.is-disabled {
+				color: rgba(255, 255, 255, 0.22);
+				text-decoration: line-through;
+				cursor: not-allowed;
+			}
+
+			.booking-date-day.is-selected {
+				background: #8bc8f1;
+				color: #14204f;
+				font-weight: 700;
+			}
+
+			.booking-date-input {
+				position: absolute;
+				opacity: 0;
+				pointer-events: none;
 			}
 
 			.booking-field textarea {
 				min-height: 9rem;
 				resize: vertical;
+			}
+
+			.booking-panel .booking-field input::placeholder,
+			.booking-panel .booking-field textarea::placeholder {
+				color: rgba(255, 255, 255, 0.85) !important;
+				opacity: 1 !important;
+			}
+
+			.booking-panel .booking-field select {
+				background-image: none !important;
+				padding-right: 3em;
+			}
+
+			.booking-panel .booking-field select,
+			.booking-panel .booking-field select option {
+				color: var(--booking-text) !important;
+				background: var(--booking-solid-bg) !important;
+			}
+
+			.booking-panel .booking-field input:focus,
+			.booking-panel .booking-field select:focus,
+			.booking-panel .booking-field textarea:focus,
+			.booking-panel .booking-date-trigger:focus {
+				border-color: rgba(255, 255, 255, 0.4) !important;
+				box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+			}
+
+			.booking-panel #booking-notes {
+				color: #ffffff !important;
+			}
+
+			.booking-panel #booking-notes::placeholder {
+				color: rgba(255, 255, 255, 0.72) !important;
+				opacity: 1 !important;
 			}
 
 			.booking-meta {
@@ -113,54 +290,6 @@
 				list-style: none;
 				color: rgba(255, 255, 255, 0.72);
 				font-size: 0.95rem;
-			}
-
-			.booking-summary p {
-				margin-bottom: 1.25rem;
-			}
-
-			.booking-list {
-				margin: 0;
-				padding: 0;
-				list-style: none;
-				display: grid;
-				gap: 0.9rem;
-			}
-
-			.booking-list li {
-				padding: 1rem 1.1rem;
-				border-radius: 14px;
-				background: rgba(28, 43, 143, 0.22);
-				border: 1px solid rgba(255, 255, 255, 0.08);
-			}
-
-			.booking-list strong {
-				display: block;
-				font-size: 1rem;
-				margin-bottom: 0.2rem;
-				color: #ffffff;
-			}
-
-			.booking-list span {
-				display: block;
-				font-size: 0.92rem;
-				color: rgba(255, 255, 255, 0.76);
-			}
-
-			.booking-empty {
-				padding: 1rem 1.1rem;
-				border-radius: 14px;
-				background: rgba(255, 255, 255, 0.04);
-				color: rgba(255, 255, 255, 0.72);
-			}
-
-			.booking-note {
-				margin-top: 1.25rem;
-				padding: 1rem 1.1rem;
-				border-left: 3px solid rgba(255, 255, 255, 0.4);
-				background: rgba(255, 255, 255, 0.04);
-				color: rgba(255, 255, 255, 0.78);
-				font-size: 0.92rem;
 			}
 
 			.booking-status {
@@ -220,19 +349,12 @@
 				margin-bottom: 1.5rem;
 			}
 
-			@media screen and (max-width: 980px) {
-				.booking-shell {
-					grid-template-columns: 1fr;
-				}
-			}
-
 			@media screen and (max-width: 736px) {
 				.booking-grid {
 					grid-template-columns: 1fr;
 				}
 
-				.booking-panel,
-				.booking-summary {
+				.booking-panel {
 					padding: 1.5rem;
 				}
 			}
@@ -258,7 +380,7 @@
 							<section id="content" class="main">
 								<div class="booking-shell">
 									<div class="booking-panel">
-										<h2>Reserva una cita</h2>
+										<h2>Agenda una cita</h2>
 										<p class="lead">Selecciona una fecha y horario para agendar tu consulta con UpwardDev. Una vez registrada, la cita se agregará al calendario visible de esta interfaz y no tendrá opción de edición desde la página.</p>
 										<form id="booking-form">
 											<div class="booking-grid">
@@ -272,7 +394,27 @@
 												</div>
 												<div class="booking-field">
 													<label for="booking-date">Fecha</label>
-													<input type="date" id="booking-date" name="date" required />
+													<div class="booking-date" id="booking-date-picker">
+														<input type="hidden" id="booking-date" name="date" required />
+														<button type="button" class="booking-date-trigger is-empty" id="booking-date-trigger" aria-haspopup="dialog" aria-expanded="false">Selecciona una fecha</button>
+														<div class="booking-date-panel" id="booking-date-panel">
+															<div class="booking-date-header">
+																<button type="button" id="booking-date-prev" aria-label="Mes anterior">&lsaquo;</button>
+																<div class="booking-date-month" id="booking-date-month"></div>
+																<button type="button" id="booking-date-next" aria-label="Mes siguiente">&rsaquo;</button>
+															</div>
+															<div class="booking-date-weekdays">
+																<span>Do</span>
+																<span>Lu</span>
+																<span>Ma</span>
+																<span>Mi</span>
+																<span>Ju</span>
+																<span>Vi</span>
+																<span>Sa</span>
+															</div>
+															<div class="booking-date-grid" id="booking-date-grid"></div>
+														</div>
+													</div>
 												</div>
 												<div class="booking-field">
 													<label for="booking-time">Horario</label>
@@ -301,14 +443,6 @@
 											</ul>
 										</form>
 									</div>
-									<aside class="booking-summary">
-										<h3>Fechas reservadas</h3>
-										<p>Las citas registradas aquí se muestran en modo lectura para evitar cambios desde la página.</p>
-										<ul class="booking-list" id="booking-list"></ul>
-										<div class="booking-note">
-											Esta versión guarda la agenda en el navegador local. Para correo automático real y disponibilidad compartida para todos los visitantes, hace falta conectar esta página a un backend y una base de datos.
-										</div>
-									</aside>
 								</div>
 							</section>
 
@@ -350,8 +484,8 @@
 					<div class="booking-check">
 						<span class="icon solid fa-check"></span>
 					</div>
-					<h3 id="booking-modal-title">You are all set</h3>
-					<p>Please check your email for confirmation for the appt.</p>
+					<h3 id="booking-modal-title">Todo listo</h3>
+					<p>Por favor revisa tu correo electr&oacute;nico para la confirmaci&oacute;n de la cita.</p>
 					<ul class="actions special">
 						<li><button type="button" class="button" id="booking-modal-close">Cerrar</button></li>
 					</ul>
@@ -369,17 +503,24 @@
 				(function () {
 					var form = document.getElementById('booking-form');
 					var dateInput = document.getElementById('booking-date');
+					var datePicker = document.getElementById('booking-date-picker');
+					var dateTrigger = document.getElementById('booking-date-trigger');
+					var datePanel = document.getElementById('booking-date-panel');
+					var dateGrid = document.getElementById('booking-date-grid');
+					var dateMonth = document.getElementById('booking-date-month');
+					var datePrev = document.getElementById('booking-date-prev');
+					var dateNext = document.getElementById('booking-date-next');
 					var status = document.getElementById('booking-status');
-					var list = document.getElementById('booking-list');
 					var modal = document.getElementById('booking-modal');
 					var modalClose = document.getElementById('booking-modal-close');
 					var storageKey = 'upwarddev-bookings';
 
-					if (!form || !dateInput || !status || !list || !modal || !modalClose) return;
+					if (!form || !dateInput || !datePicker || !dateTrigger || !datePanel || !dateGrid || !dateMonth || !datePrev || !dateNext || !status || !modal || !modalClose) return;
 
 					var today = new Date();
+					var todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 					var isoToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().split('T')[0];
-					dateInput.min = isoToday;
+					var visibleMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
 					function getBookings() {
 						try {
@@ -405,21 +546,104 @@
 						});
 					}
 
-					function renderBookings() {
-						var bookings = getBookings().sort(function (a, b) {
-							var left = a.date + 'T' + a.time;
-							var right = b.date + 'T' + b.time;
-							return left.localeCompare(right);
+					function formatDateShort(dateValue) {
+						var parts = dateValue.split('-');
+						if (parts.length !== 3) return 'Selecciona una fecha';
+						var localDate = new Date(parts[0], parts[1] - 1, parts[2]);
+						return localDate.toLocaleDateString('es-NI', {
+							day: '2-digit',
+							month: '2-digit',
+							year: 'numeric'
 						});
+					}
 
-						if (!bookings.length) {
-							list.innerHTML = '<li class="booking-empty">Aún no hay citas guardadas en este navegador.</li>';
-							return;
+					function getBookedSlots() {
+						return getBookings().map(function (item) {
+							return item.date;
+						});
+					}
+
+					function openDatePanel() {
+						datePanel.classList.add('is-open');
+						dateTrigger.setAttribute('aria-expanded', 'true');
+					}
+
+					function closeDatePanel() {
+						datePanel.classList.remove('is-open');
+						dateTrigger.setAttribute('aria-expanded', 'false');
+					}
+
+					function syncDateTrigger() {
+						if (dateInput.value) {
+							dateTrigger.textContent = formatDateShort(dateInput.value);
+							dateTrigger.classList.remove('is-empty');
+						} else {
+							dateTrigger.textContent = 'Selecciona una fecha';
+							dateTrigger.classList.add('is-empty');
+						}
+					}
+
+					function sameDate(a, b) {
+						return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+					}
+
+					function toIso(date) {
+						return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+					}
+
+					function renderCalendar() {
+						var bookedDates = getBookedSlots();
+						var year = visibleMonth.getFullYear();
+						var month = visibleMonth.getMonth();
+						var monthLabel = visibleMonth.toLocaleDateString('es-NI', { month: 'long', year: 'numeric' });
+						var firstDay = new Date(year, month, 1);
+						var startDay = firstDay.getDay();
+						var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+						dateMonth.textContent = monthLabel;
+						dateGrid.innerHTML = '';
+
+						for (var i = 0; i < startDay; i++) {
+							var spacer = document.createElement('button');
+							spacer.type = 'button';
+							spacer.className = 'booking-date-day is-muted';
+							spacer.disabled = true;
+							spacer.textContent = '';
+							dateGrid.appendChild(spacer);
 						}
 
-						list.innerHTML = bookings.map(function (booking) {
-							return '<li><strong>' + formatDate(booking.date) + '</strong><span>' + booking.time + ' | ' + booking.name + '</span><span>' + booking.email + '</span></li>';
-						}).join('');
+						for (var day = 1; day <= daysInMonth; day++) {
+							var current = new Date(year, month, day);
+							var currentIso = toIso(current);
+							var isPast = current < todayMidnight;
+							var isBooked = bookedDates.indexOf(currentIso) !== -1;
+							var isSelected = dateInput.value === currentIso;
+							var button = document.createElement('button');
+							button.type = 'button';
+							button.className = 'booking-date-day';
+							button.textContent = String(day);
+
+							if (isPast || isBooked) {
+								button.classList.add('is-disabled');
+								button.disabled = true;
+							}
+
+							if (isSelected) {
+								button.classList.add('is-selected');
+							}
+
+							button.addEventListener('click', function (value, dateObj) {
+								return function () {
+									dateInput.value = value;
+									visibleMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1);
+									syncDateTrigger();
+									renderCalendar();
+									closeDatePanel();
+								};
+							}(currentIso, current));
+
+							dateGrid.appendChild(button);
+						}
 					}
 
 					function showStatus(message) {
@@ -439,6 +663,30 @@
 					modalClose.addEventListener('click', hideModal);
 					modal.addEventListener('click', function (event) {
 						if (event.target === modal) hideModal();
+					});
+
+					dateTrigger.addEventListener('click', function () {
+						if (datePanel.classList.contains('is-open')) {
+							closeDatePanel();
+						} else {
+							openDatePanel();
+						}
+					});
+
+					datePrev.addEventListener('click', function () {
+						visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() - 1, 1);
+						renderCalendar();
+					});
+
+					dateNext.addEventListener('click', function () {
+						visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 1);
+						renderCalendar();
+					});
+
+					document.addEventListener('click', function (event) {
+						if (!datePicker.contains(event.target)) {
+							closeDatePanel();
+						}
 					});
 
 					form.addEventListener('submit', function (event) {
@@ -471,13 +719,16 @@
 
 						bookings.push(booking);
 						saveBookings(bookings);
-						renderBookings();
 						form.reset();
-						dateInput.min = isoToday;
+						dateInput.value = '';
+						visibleMonth = new Date(todayMidnight.getFullYear(), todayMidnight.getMonth(), 1);
+						syncDateTrigger();
+						renderCalendar();
 						showModal();
 					});
 
-					renderBookings();
+					syncDateTrigger();
+					renderCalendar();
 				})();
 			</script>
 			<script src="assets/js/main.js"></script>
