@@ -29,6 +29,7 @@
 
 	// Nav.
 		var $nav = $('#nav');
+		var $subpageLogo = $('.subpage-nav-logo');
 
 		if ($nav.length > 0) {
 
@@ -112,6 +113,22 @@
 							});
 
 					});
+
+		}
+
+	// Subpage fixed logo.
+		if ($subpageLogo.length > 0) {
+
+			$main
+				.scrollex({
+					mode: 'top',
+					enter: function() {
+						$body.addClass('subpage-logo-visible');
+					},
+					leave: function() {
+						$body.removeClass('subpage-logo-visible');
+					}
+				});
 
 		}
 
