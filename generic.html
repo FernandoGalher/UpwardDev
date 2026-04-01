@@ -15,6 +15,11 @@
 		<link rel="icon" type="image/svg+xml" href="images/UpwardDev SVG.svg" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+			.process-overview {
+				--process-accent-soft: rgba(230, 210, 181, 0.12);
+				--process-accent-border: rgba(230, 210, 181, 0.24);
+			}
+
 			.process-overview .process-intro {
 				max-width: 52rem;
 				margin: 0 auto 3rem auto;
@@ -28,9 +33,9 @@
 				position: relative;
 				text-align: center;
 				padding: 1.5rem 1.35rem;
-				background: rgba(140, 201, 240, 0.14);
-				border: 1px solid rgba(140, 201, 240, 0.26);
-				border-radius: 18px;
+				background: var(--process-accent-soft);
+				border: 1px solid var(--process-accent-border);
+				border-radius: 10px;
 				box-shadow: 0 12px 28px rgba(15, 20, 45, 0.12);
 			}
 
@@ -62,11 +67,13 @@
 				line-height: 1;
 				border: 0;
 				border-radius: 0;
+				color: #E6D2B5;
 			}
 
 			.process-overview .features > li > h3 {
 				margin-bottom: 0.7rem;
 				font-size: 1.15rem;
+				color: #E6D2B5;
 			}
 
 			.process-overview .features > li > p {
@@ -95,6 +102,7 @@
 				margin: 0 0 0.45rem 0;
 				font-size: 0.95rem;
 				font-weight: 700;
+				color: #E6D2B5;
 			}
 
 			.process-step p {
@@ -114,7 +122,7 @@
 				<!-- Header -->
 					<header id="header" class="alt">
 						<span class="logo"><a href="index.html"><img src="images/UpwardDev SVG.svg" alt="UpwardDev" /></a></span>
-						<h1>UpwardDev</h1>
+						<h1><a href="index.html">UpwardDev</a></h1>
 						<p>El crecimiento se construye con propósito</p>
 					</header>
 

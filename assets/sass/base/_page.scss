@@ -34,12 +34,8 @@
 		}
 
 	body {
-		background-color: #1A1F36;
-		@include vendor('background-image', (
-			'linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02))',
-			'url("images/overlay.png")',
-			'linear-gradient(180deg, #1A1F36 0%, #313a61 100%)',
-		));
+		background-color: #000435;
+		background-image: none;
 
 		// Stops initial animations until page loads.
 			&.is-preload {

@@ -22,8 +22,8 @@
 		padding: 0.5em 1em;
 		height: 3.9em;
 		background-color: transparentize(_palette(invert, bg-alt), 0.05);
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
 		opacity: 0;
 		pointer-events: none;
 		z-index: _misc(z-index-base);
@@ -56,8 +56,8 @@
 		max-width: calc(100% - #{_size(element-margin) * 2});
 		padding: 1em;
 		background-color: _palette(invert, bg-alt);
-		border-top-left-radius: _size(border-radius-main);
-		border-top-right-radius: _size(border-radius-main);
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 		cursor: default;
 		text-align: center;
 		overflow: hidden;
@@ -136,8 +136,8 @@
 			top: 0;
 			padding: 0.5em 1em;
 			background-color: transparentize(_palette(invert, bg-alt), 0.05);
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
 			z-index: _misc(z-index-base);
 
 			.nav-logo {

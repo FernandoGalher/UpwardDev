@@ -39,9 +39,11 @@
 						mode: 'top',
 						enter: function() {
 							$nav.addClass('alt');
+							$body.addClass('nav-blur-visible');
 						},
 						leave: function() {
 							$nav.removeClass('alt');
+							$body.removeClass('nav-blur-visible');
 						},
 					});
 
@@ -165,5 +167,40 @@
 				window.localStorage.setItem(storageKey, nextIndex);
 
 		}
+
+	// Button press interaction.
+		var pressSelector = 'a.button, .button, button, input[type="button"], input[type="submit"], input[type="reset"]';
+
+		$(document)
+			.on('pointerdown', pressSelector, function(event) {
+
+				var $button = $(this);
+				var rect = this.getBoundingClientRect();
+				var x = ((event.clientX - rect.left) / rect.width) * 100;
+				var y = ((event.clientY - rect.top) / rect.height) * 100;
+
+				$button
+					.css('--press-x', x + '%')
+					.css('--press-y', y + '%')
+					.addClass('is-pressed');
+
+			})
+			.on('pointermove', pressSelector, function(event) {
+
+				if (!$(this).hasClass('is-pressed'))
+					return;
+
+				var rect = this.getBoundingClientRect();
+				var x = ((event.clientX - rect.left) / rect.width) * 100;
+				var y = ((event.clientY - rect.top) / rect.height) * 100;
+
+				$(this)
+					.css('--press-x', x + '%')
+					.css('--press-y', y + '%');
+
+			})
+			.on('pointerup pointerleave pointercancel', pressSelector, function() {
+				$(this).removeClass('is-pressed');
+			});
 
 })(jQuery);
